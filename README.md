@@ -1,50 +1,76 @@
-# React + TypeScript + Vite
+# React Mini Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Jump straight to [Usage](#usage)
 
-Currently, two official plugins are available:
+## Project description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Add description
 
-## Expanding the ESLint configuration
+## Tech-Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- React Router
+- TypeScript
+- Styled Components
+- Git
+- Github
 
-- Configure the top-level `parserOptions` property like this:
+## Development process
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Started out with some wireframing in Figma to have some guidance to what i want to build and what it should look like.
+
+With that in place I moved on to check what type of data I could recive from the The Open Movie Database.
+
+### Challenges
+
+Add challenges.
+
+### Learnings
+
+Add learnings.
+
+## About React and Styled Components
+
+### The Good
+
+The good stuff.
+
+### The Not So Good
+
+The not so good stuff.
+
+## Usage
+
+```bash
+$ npm install # or pnpm install or yarn install or bun install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Available Scripts
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+In the project directory, you can run:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+$ npm run dev
 ```
+
+Runs the app in the development mode.<br>
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+
+### Learn more on the [React](https://react.dev/) website and checkout [Styled Components](https://styled-components.com/)
+
+## Krav
+
+### Krav för Godkänt
+
+- [] Projektet innehåller och använder minst 6 stycken komponenter varav minst 2 stycken är “statefulla"-komponenter
+- [] React Router har använts för att dynamiskt uppdatera URL’en
+- [] Git & GitHub har använts
+- [] Projektmappen innehåller en README.md fil
+- [] Uppgiften lämnas in i tid
+- [] Muntlig presentation är genomförd
+
+### Krav för Väl Godkänt
+
+- [] Alla punkter för godkänt är uppfyllda
+- [] Ett “CSS i JS“ lib skall användas för att skriva CSS (ex JSS, Styled-Components, mm)
+- [] Data från ett web-API hämtas och visas på sidan
