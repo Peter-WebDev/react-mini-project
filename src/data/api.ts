@@ -1,4 +1,4 @@
-const TMDB_API_KEY = "d126caf17fbf5893b643772caf992b20";
+const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 export async function fetchMovieByGenre(genreId: number) {
