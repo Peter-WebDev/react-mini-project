@@ -54,10 +54,20 @@ interface Props {
     movie: Movie;
 }
 
+// Function to generate a slug from the title to lowercase and replace/remove
+const generateSlug = (title: string): string => {
+    return title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-") // Replace non-alphanumeric characters with hyphens
+        .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
+}
+
 export default function Card(props: Props) {
+    const slug = generateSlug(props.movie.title); // Calling the slug function
+
     // Conditinal rendering instead to check if there is a poster or not
     return (
-        <Link to={`movies/${props.movie.title}/${props.movie.id}`}>
+        <Link to={`movies/${slug}/${props.movie.id}`}>
             <CardWrapper>
                 {props.movie.poster_path ? (
                     <CardImg src={props.movie.poster_path} alt={props.movie.title || "Poster"} />
