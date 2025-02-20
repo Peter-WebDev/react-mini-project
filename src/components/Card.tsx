@@ -1,3 +1,9 @@
+import { Movie } from "../data/api";
+
+interface Props {
+    movie: Movie;
+}
+
 export default function Card(prop: Props) {
     return (
         <div>
