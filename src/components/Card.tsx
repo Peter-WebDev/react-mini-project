@@ -1,17 +1,20 @@
+import { Link } from "react-router";
 import { Movie } from "../data/api";
 
 interface Props {
     movie: Movie;
 }
 
-export default function Card(prop: Props) {
+export default function Card(props: Props) {
     return (
-        <div>
-            <img src="" alt="" />
+        <Link to={`movies/${props.movie.title}/${props.movie.id}`}>
             <div>
-                <h3>Movie title</h3>
-                <p>Year</p>
+                <img src="" alt="" />
+                <div>
+                    <h3>Movie title</h3>
+                    <p>Year</p>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }
