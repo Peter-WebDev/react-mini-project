@@ -9,6 +9,8 @@ const StyledHeaderDiv = styled.div`
     width: min(100% - 2rem, 1064px);  
     margin-inline: auto;
     display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     padding: 1.5em 0;
 `;
 
