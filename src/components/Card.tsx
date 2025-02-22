@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Movie } from "../data/api";
 
 const CardWrapper = styled.div`
-    width: 300px;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
