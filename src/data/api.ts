@@ -1,18 +1,30 @@
-const TMDB_API_KEY = "d126caf17fbf5893b643772caf992b20";
+const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
-export async function fetchMovieByGenre(genreId: number) {
+export async function fetchMoviesByGenre(
+  genreId: number,
+  numberOfMovies: number = 10
+): Promise<Movie[]> {
   const response = await fetch(
-    `${TMDB_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&sort_by=popularity.desc`
+    `${TMDB_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&sort_by=popularity.desc`,
+    {
+      headers: {
+        Authorization: TMDB_API_KEY,
+      },
+    }
   );
 
-  console.log(response);
+  if (!response.ok) {
+    throw new Error(`Error status: ${response.status}`);
+  }
 
   const data: TmdbDiscoverResponse = await response.json();
-  return data.results;
+  const movies = data.results as Movie[];
+  return movies.slice(0, numberOfMovies);
 }
 
 export type Movie = TmdbDiscoverResponse["results"][number];
+export type MovieListProps = TmdbDiscoverResponse;
 
 interface TmdbDiscoverResponse {
   page: number;
