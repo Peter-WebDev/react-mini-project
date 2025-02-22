@@ -4,12 +4,12 @@ import GlobalStyle from "./styles/GlobalStyles";
 
 export default function MediaAppLayout() {
   return (
-  <div>
-    <GlobalStyle />
-    <Header />
-    <main>
-      <Outlet />
-    </main>
-  </div>
+    <>
+      <GlobalStyle />
+      <Header />
+      <main>
+        <Outlet />
+      </main>
+    </>
   )
 }

@@ -3,7 +3,14 @@ import styled from "styled-components";
 import { fetchMoviesByGenre, Movie } from "../data/api";
 import Card from "./Card";
 
-const CardListWrapper = styled.div<{ $categoryColor: string }>`
+const CardListSection = styled.section<{ $categoryColor: string }>`
+    h2 {
+        // Access props within style
+        color: ${({ $categoryColor }) => $categoryColor};
+    }
+`;
+
+const CardListWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
     gap: 1rem;
@@ -12,12 +19,6 @@ const CardListWrapper = styled.div<{ $categoryColor: string }>`
 
     &:first-of-type {
         border-top: none;
-    }
-
-    h2 {
-        padding-bottom: 1rem;
-        // Access props within style
-        color: ${({ $categoryColor }) => $categoryColor};
     }
 `;
 
@@ -39,11 +40,13 @@ export default function CardList({ categoryName, genreId, numberOfMovies, catego
     if (!data) return <p>No movies found for {categoryName}</p>
 
     return (
-        <CardListWrapper $categoryColor={categoryColor}>
+        <CardListSection $categoryColor={categoryColor}>
             <h2>{categoryName}</h2>
-            {data.map((movie: Movie) => (
-                <Card key={movie.id} movie={movie} />
-            ))}
-        </CardListWrapper>
+            <CardListWrapper>
+                {data.map((movie: Movie) => (
+                    <Card key={movie.id} movie={movie} />
+                ))}
+            </CardListWrapper>
+        </CardListSection>
     );
 }

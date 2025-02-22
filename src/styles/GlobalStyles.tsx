@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
     }
+    main {
+        width: min(100% - 2rem, 1400px);
+        margin-inline: auto;
+    }
 `;
 
 export default GlobalStyle;

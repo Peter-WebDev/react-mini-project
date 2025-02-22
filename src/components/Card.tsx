@@ -17,12 +17,17 @@ const CardWrapper = styled.div`
 `;
 
 const CardContent = styled.div`
-    padding: 16px;
+    padding: 1em;
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 10%,
+        rgba(0, 0, 0, 0.9) 50%,
+        rgba(0, 0, 0, 1) 100%);    
     color: white;
 `;
 
@@ -31,18 +36,17 @@ const CardImg = styled.img`
     display: block;
 `;
 
-const CardTitle = styled.h2`
+const CardTitle = styled.h3`
     font-size: 1.2em;
 `;
 
 const CardYear = styled.p`
     font-size: 0.9em;
-    opacity: 0.8;
 `;
 
 const Placeholder = styled.div`
     width: 100%;
-    height: 400px;
+    height: auto;
     background-color: #eee;
     display: flex;
     align-items: center;
