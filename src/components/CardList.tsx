@@ -8,14 +8,14 @@ const CardListSection = styled.section<{ $categoryColor: string }>`
         // Access props within style
         color: ${({ $categoryColor }) => $categoryColor};
     }
+    margin-bottom: 1rem;
 `;
 
 const CardListWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
     border-top: 1px solid #ccc;
-    margin-bottom: 1rem;
 
     &:first-of-type {
         border-top: none;

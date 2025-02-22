@@ -31,11 +31,6 @@ const CardContent = styled.div`
     color: white;
 `;
 
-const CardImg = styled.img`
-    max-width: 100%;
-    display: block;
-`;
-
 const CardTitle = styled.h3`
     font-size: 1.2em;
 `;
@@ -74,7 +69,7 @@ export default function Card(props: Props) {
         <Link to={`movies/${slug}/${props.movie.id}`}>
             <CardWrapper>
                 {props.movie.poster_path ? (
-                    <CardImg src={`https://image.tmdb.org/t/p/w500${props.movie.poster_path}`} alt={props.movie.title || "Poster"} />
+                    <img src={`https://image.tmdb.org/t/p/w500${props.movie.poster_path}`} alt={props.movie.title || "Poster"} />
                 ) : (
                     <Placeholder>
                         No poster available

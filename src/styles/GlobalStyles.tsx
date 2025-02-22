@@ -9,8 +9,17 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
     main {
-        width: min(100% - 2rem, 1400px);
+        width: min(100% - 2rem, 1064px);
         margin-inline: auto;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        aspect-ratio: auto;
+        image-rendering: auto;
+        -webkit-tap-highlight-color: transparent;
     }
 `;
 
