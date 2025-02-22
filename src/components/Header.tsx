@@ -2,9 +2,16 @@ import styled from "styled-components";
 import logo from '../assets/popcorn-plus.webp';
 
 const StyledHeader = styled.header`
-    display: flex;
     background-color: #2C2C2C;
-    padding: 1.5em;
+`;
+
+const StyledHeaderDiv = styled.div`
+    width: min(100% - 2rem, 1064px);  
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1.5em 0;
 `;
 
 const StyledUl = styled.ul`
@@ -20,7 +27,8 @@ const Logo = styled.img`
 
 export default function Header() {
     return (
-        <StyledHeader>
+      <StyledHeader>
+        <StyledHeaderDiv>
           <Logo src={logo} alt="" />
           <nav>
             <StyledUl>
@@ -31,6 +39,7 @@ export default function Header() {
               <li><a href="#">My list</a></li>
             </StyledUl>
           </nav>
-        </StyledHeader>
+        </StyledHeaderDiv>
+      </StyledHeader>
     );
 }
