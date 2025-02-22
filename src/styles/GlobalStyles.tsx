@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
         width: min(100% - 2rem, 1064px);
         margin-inline: auto;
     }
+    
     img {
         max-width: 100%;
         height: auto;
