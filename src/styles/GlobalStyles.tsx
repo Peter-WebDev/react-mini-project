@@ -19,7 +19,6 @@ const GlobalStyle = createGlobalStyle`
         display: block;
         object-fit: cover;
         aspect-ratio: auto;
-        image-rendering: auto;
         -webkit-tap-highlight-color: transparent;
     }
 `;

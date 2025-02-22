@@ -5,13 +5,14 @@ import { Movie } from "../data/api";
 const CardWrapper = styled.div`
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35);
     position: relative;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 
     &:hover {
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.65);
+        transform: perspective(700px)
+		scale(1.01)
     }
 `;
 
