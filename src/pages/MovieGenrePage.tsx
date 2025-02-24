@@ -8,6 +8,14 @@ export default function MovieGenrePage() {
   const params = useParams();
   const categoryId = params.categoryId;
 
+  const genreId = Number(categoryId); // Converts back numbers since useParams turned it into string
+  
+  const [numberOfMoviesToLoad, setNumberOfMoviesToLoad] = useState(15);
+
+  const { isLoading, error, data, refetch } = useQuery<Movie[], Error>({
+    queryKey: ['movies', genreId, numberOfMoviesToLoad],
+    queryFn: () => fetchMoviesByGenre(genreId, numberOfMoviesToLoad),
+  });
 
   if (!categoryId) {
     return <p>Category ID is missing</p>;
@@ -17,15 +25,6 @@ export default function MovieGenrePage() {
   if (!/^\d+$/.test(categoryId)) {
     return <h1>Invalid Category ID</h1>;
   }
-
-  const genreId = Number(categoryId); // Converts back numbers since useParams turned it into string
-
-  const [numberOfMoviesToLoad, setNumberOfMoviesToLoad] = useState(15);
-
-  const { isLoading, error, data, refetch } = useQuery<Movie[], Error>({
-    queryKey: ['movies', genreId, numberOfMoviesToLoad],
-    queryFn: () => fetchMoviesByGenre(genreId, numberOfMoviesToLoad),
-  });
 
   const handleLoadMore = () => {
     setNumberOfMoviesToLoad(prev => prev + 15);
@@ -48,7 +47,7 @@ export default function MovieGenrePage() {
   return (
     <>
       <h1>Movies in genre {categoryId}</h1>
-      <CardList movies={data} categoryColor="#FFF" />
+      <CardList movies={data} />
       <button onClick={handleLoadMore}>Load more</button>
     </>
   );
