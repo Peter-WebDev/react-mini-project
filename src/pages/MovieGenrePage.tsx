@@ -1,8 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useParams } from "react-router";
+import styled from "styled-components";
 import CardList from "../components/CardList";
 import { fetchMoviesByGenre, Movie } from "../data/api";
+
+const CardListWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+
+    &:first-of-type {
+        border-top: none;
+    }
+`;
 
 export default function MovieGenrePage() {
   const params = useParams();
@@ -40,14 +52,16 @@ export default function MovieGenrePage() {
     return <p>Error: Could not load movies.</p>
   }
 
-  if (!data) {
+  if (!data || data?.length === 0) { // Added check for empty array
     return <p>No movies found for this category.</p>
   }
 
   return (
     <>
       <h1>Movies in genre {categoryId}</h1>
-      <CardList movies={data} />
+      <CardListWrapper>
+        <CardList movies={data} />
+      </CardListWrapper>
       <button onClick={handleLoadMore}>Load more</button>
     </>
   );
