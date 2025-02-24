@@ -59,8 +59,9 @@ export default function MovieGenrePage() {
   return (
     <>
       <h1>Movies in genre {categoryId}</h1>
+      {console.log("Data before render:", data)} {/* Add this line HERE */}
       <CardListWrapper>
-        <CardList movies={data} />
+        {data && data.length > 0 && <CardList movies={data} />} {/* Modify this line */}
       </CardListWrapper>
       <button onClick={handleLoadMore}>Load more</button>
     </>
