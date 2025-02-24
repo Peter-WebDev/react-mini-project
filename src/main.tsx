@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path='/' element={<MediaAppLayout />}>
             <Route index element={<HomePage />} />
-            <Route path='/movie/:categoryId' element={<MovieGenrePage />} />
+            <Route path='/movies/:categoryId' element={<MovieGenrePage />} />
           </Route>
         </Routes>
       </BrowserRouter>

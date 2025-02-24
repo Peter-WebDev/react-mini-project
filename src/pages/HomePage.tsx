@@ -59,7 +59,7 @@ export default function HomePage() {
             <h1>Welcome to Popcorn+</h1>
             {genres.map(genre => (
                 <div key={genre.id}>
-                    <GenreContainer to={`/movie/${genre.id}`} $categoryColor={genre.color}>  {/* Link wraps title and "See More" */}
+                    <GenreContainer to={`/movies/${genre.id}`} $categoryColor={genre.color}>  {/* Link wraps title and "See More" */}
                         <GenreTitle $categoryColor={genre.color}>{genre.name}</GenreTitle>
                         <SeeMoreLink>Explore All {genre.name} Movies</SeeMoreLink>
                     </GenreContainer>

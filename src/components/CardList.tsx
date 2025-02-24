@@ -1,11 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import styled from "styled-components";
 import { fetchMoviesByGenre, Movie } from "../data/api";
 import Card from "./Card";
-
-const CardListSection = styled.section`
-    margin-block: 2rem;
-`;
 
 interface CardListProps {
     genreId?: number;
@@ -27,10 +22,10 @@ export default function CardList({ genreId, initialNumberOfMovies, movies }: Car
     if (!data) return <p>No movies found</p>
 
     return (
-        <CardListSection>
-                {moviesToDisplay.map((movie: Movie) => (
-                    <Card key={movie.id} movie={movie} />
+        <>
+            {moviesToDisplay.map((movie: Movie) => (
+                <Card key={movie.id} movie={movie} />
                 ))}
-        </CardListSection>
+        </>
     );
 }
