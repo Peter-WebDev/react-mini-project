@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useParams } from "react-router";
+import CardList from "../components/CardList";
 import { fetchMoviesByGenre, Movie } from "../data/api";
 
 export default function MovieGenrePage() {
@@ -26,6 +27,11 @@ export default function MovieGenrePage() {
     queryFn: () => fetchMoviesByGenre(genreId, numberOfMoviesToLoad),
   });
 
+  const handleLoadMore = () => {
+    setNumberOfMoviesToLoad(prev => prev + 15);
+    refetch();
+  }
+
   if (isLoading) {
     return <p>Loading movies...</p>;
   }
@@ -42,6 +48,8 @@ export default function MovieGenrePage() {
   return (
     <>
       <h1>Movies in genre {categoryId}</h1>
+      <CardList movies={data} categoryColor="#FFF" />
+      <button onClick={handleLoadMore}>Load more</button>
     </>
   );
 }
