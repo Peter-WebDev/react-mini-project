@@ -17,7 +17,7 @@ export default function MovieGenrePage() {
     return <h1>Invalid Category ID</h1>;
   }
 
-  const genreId = Number(categoryId);
+  const genreId = Number(categoryId); // Converts back numbers since useParams turned it into string
 
   const [numberOfMoviesToLoad, setNumberOfMoviesToLoad] = useState(15);
 
@@ -25,6 +25,19 @@ export default function MovieGenrePage() {
     queryKey: ['movies', genreId, numberOfMoviesToLoad],
     queryFn: () => fetchMoviesByGenre(genreId, numberOfMoviesToLoad),
   });
+
+  if (isLoading) {
+    return <p>Loading movies...</p>;
+  }
+
+  if (error) {
+    console.error("Error fetching movies:", error.message)
+    return <p>Error: Could not load movies.</p>
+  }
+
+  if (!data) {
+    return <p>No movies found for this category.</p>
+  }
 
   return (
     <>
