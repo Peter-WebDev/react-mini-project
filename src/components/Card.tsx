@@ -44,11 +44,11 @@ const CardYear = styled.p`
 const Placeholder = styled.div`
     width: 100%;
     height: auto;
-    background-color: #eee;
+    background-color: #d6dce2;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888;
+    color: #262727;
 `;
 
 interface Props {
