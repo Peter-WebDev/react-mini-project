@@ -64,7 +64,6 @@ const generateSlug = (title: string): string => {
 }
 
 export default function Card(props: Props) {
-    console.log("Card movie:", props.movie); // Log the ENTIRE movie object
 
     const slug = generateSlug(props.movie.title); // Calling the slug function
 

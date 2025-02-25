@@ -24,9 +24,10 @@ export default function MovieGenrePage() {
   
   const [numberOfMoviesToLoad, setNumberOfMoviesToLoad] = useState(15);
 
-  const { isLoading, error, data, refetch } = useQuery<Movie[], Error>({
-    queryKey: ['movies', genreId, numberOfMoviesToLoad],
+  const { isLoading, error, data, refetch } = useQuery<Movie[]>({
+    queryKey: ['genre-page-movies', genreId, numberOfMoviesToLoad],
     queryFn: () => fetchMoviesByGenre(genreId, numberOfMoviesToLoad),
+    enabled: !!categoryId && /^\d+$/.test(categoryId)
   });
 
   if (!categoryId) {
@@ -52,7 +53,7 @@ export default function MovieGenrePage() {
     return <p>Error: Could not load movies.</p>
   }
 
-  if (!data || data?.length === 0) { // Added check for empty array
+  if (!data || data.length === 0) { // Added check for empty array
     return <p>No movies found for this category.</p>
   }
 
