@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
 import { Movie } from "../data/api";
 
 interface LikedMoviesValue {
@@ -11,6 +11,17 @@ const LikedMoviesContext = createContext({} as LikedMoviesValue);
 
 export default function LikedMoviesProvider(props: PropsWithChildren) {
     const [likedMovies, setLikedMovies] = useState<Movie[]>([]);
+
+    useEffect(() => {
+        const storedLikedMovies = localStorage.getItem('likedMovies');
+        if (storedLikedMovies) {
+            setLikedMovies(JSON.parse(storedLikedMovies));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
+    }, [likedMovies]);
 
     const toggleLikedMovie = (movie: Movie) => {
         if (isMovieLiked(movie.id)) {
