@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import styled from "styled-components";
 import { Movie } from "../data/api";
+import { useLikedMovies } from "../providers/LikedMoviesProvider";
 
 const CardWrapper = styled.div`
     border-radius: 8px;
@@ -64,8 +65,17 @@ const generateSlug = (title: string): string => {
 }
 
 export default function Card(props: Props) {
+    const { toggleLikedMovie, isMovieLiked } = useLikedMovies();
+    const isLiked = isMovieLiked(props.movie.id);
 
     const slug = generateSlug(props.movie.title); // Calling the slug function
+
+    // Handle like button click without triggering the Link
+    const handleLikeClick = (e: React.MouseEvent) => {
+        e.preventDefault(); // Prevents Link to be triggered
+        e.stopPropagation();
+        toggleLikedMovie(props.movie);
+    }
 
     // Conditinal rendering instead to check if there is a poster or not
     return (
@@ -84,11 +94,14 @@ export default function Card(props: Props) {
                 </CardContent>
             </Link>
 
-            <LikeButton>
-                <HeartIcon viewBox="0 0 24 24">
+            <LikeButton
+                onClick={handleLikeClick}
+                $isLiked={isLiked}
+                aria-label={isLiked ? "Remove from favourites" : "Add to favourites"}>
+                <HeartIcon viewBox="0 0 24 24" $isLiked={isLiked}>
                     <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                 </HeartIcon>
             </LikeButton>
         </CardWrapper>
-    )
+    );
 }
