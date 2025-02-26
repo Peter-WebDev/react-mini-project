@@ -69,8 +69,8 @@ export default function Card(props: Props) {
 
     // Conditinal rendering instead to check if there is a poster or not
     return (
-        <Link to={`movies/${slug}/${props.movie.id}`}>
-            <CardWrapper>
+        <CardWrapper>
+            <Link to={`movies/${slug}/${props.movie.id}`}>
                 {props.movie.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/w500${props.movie.poster_path}`} alt={props.movie.title || "Poster"} />
                 ) : (
@@ -82,7 +82,13 @@ export default function Card(props: Props) {
                     <CardTitle>{props.movie.title}</CardTitle>
                     <CardYear>{props.movie.release_date.slice(0, 4)}</CardYear> {/* Display only year from release date */}
                 </CardContent>
-            </CardWrapper>
-        </Link>
+            </Link>
+
+            <LikeButton>
+                <HeartIcon viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </HeartIcon>
+            </LikeButton>
+        </CardWrapper>
     )
 }
