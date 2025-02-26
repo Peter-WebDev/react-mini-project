@@ -52,6 +52,29 @@ const Placeholder = styled.div`
     color: #262727;
 `;
 
+const LikeButton = styled.button<{ $isLiked: boolean }>`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+`;
+
+const HeartIcon = styled.svg<{ $isLiked: boolean }>`
+    width: 20px;
+    height: 20px;
+    fill: ${({ $isLiked }) => $isLiked ? 'transparent' : 'red'};
+    stroke: ${({ $isLiked }) => $isLiked ? 'white' : 'red'};
+    stroke-width: 2;
+`;
+
 interface Props {
     movie: Movie;
 }
