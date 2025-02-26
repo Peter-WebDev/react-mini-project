@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from '../assets/popcorn-plus.webp';
 
 const StyledHeader = styled.header`
-    background-color: #2C2C2C;
+    background-color: rgb(44, 44, 44);
 `;
 
 const StyledHeaderDiv = styled.div`
@@ -37,20 +37,20 @@ const StyledLink = styled(NavLink)`
     padding: 0.5em 1.75em;
     border: 0;
     border-radius: 0.5em;
-    background-color: #262727;
-    color: #d6dce2;
+    background-color: rgb(38, 39, 39);
+    color: rgb(214, 220, 226);
     text-decoration: none;
     transition: background-color 0.2s, color 0.2s;
 
     &:hover,
     &:focus-visible {
-      background-color: #d6dce2;
-      color: #262727;
+      background-color: rgb(214, 220, 226);
+      color: rgb(38, 39, 39);
     }
 
     &.active {
-      background-color: white;
-      color: black;
+      background-color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
     }
 `;
 
