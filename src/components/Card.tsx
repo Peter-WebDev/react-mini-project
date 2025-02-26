@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import styled from "styled-components";
 import { Movie } from "../data/api";
+import { useLikedMovies } from "../providers/LikedMoviesProvider";
 
 const CardWrapper = styled.div`
     border-radius: 8px;
@@ -51,6 +52,29 @@ const Placeholder = styled.div`
     color: #262727;
 `;
 
+const LikeButton = styled.button<{ $isLiked: boolean }>`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+`;
+
+const HeartIcon = styled.svg<{ $isLiked: boolean }>`
+    width: 20px;
+    height: 20px;
+    fill: ${({ $isLiked }) => $isLiked ? 'red' : 'transparent'};
+    stroke: ${({ $isLiked }) => $isLiked ? 'red' : 'grey'};
+    stroke-width: 2;
+`;
+
 interface Props {
     movie: Movie;
 }
@@ -64,13 +88,22 @@ const generateSlug = (title: string): string => {
 }
 
 export default function Card(props: Props) {
+    const { toggleLikedMovie, isMovieLiked } = useLikedMovies();
+    const isLiked = isMovieLiked(props.movie.id);
 
     const slug = generateSlug(props.movie.title); // Calling the slug function
 
+    // Handle like button click without triggering the Link
+    const handleLikeClick = (e: React.MouseEvent) => {
+        e.preventDefault(); // Prevents Link to be triggered
+        e.stopPropagation();
+        toggleLikedMovie(props.movie);
+    }
+
     // Conditinal rendering instead to check if there is a poster or not
     return (
-        <Link to={`movies/${slug}/${props.movie.id}`}>
-            <CardWrapper>
+        <CardWrapper>
+            <Link to={`movies/${slug}/${props.movie.id}`}>
                 {props.movie.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/w500${props.movie.poster_path}`} alt={props.movie.title || "Poster"} />
                 ) : (
@@ -82,7 +115,16 @@ export default function Card(props: Props) {
                     <CardTitle>{props.movie.title}</CardTitle>
                     <CardYear>{props.movie.release_date.slice(0, 4)}</CardYear> {/* Display only year from release date */}
                 </CardContent>
-            </CardWrapper>
-        </Link>
-    )
+            </Link>
+
+            <LikeButton
+                onClick={handleLikeClick}
+                $isLiked={isLiked}
+                aria-label={isLiked ? "Remove from favourites" : "Add to favourites"}>
+                <HeartIcon viewBox="0 0 24 24" $isLiked={isLiked}>
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </HeartIcon>
+            </LikeButton>
+        </CardWrapper>
+    );
 }
