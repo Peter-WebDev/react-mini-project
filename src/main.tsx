@@ -7,22 +7,25 @@ import HomePage from './pages/HomePage.tsx'
 import MovieGenrePage from './pages/MovieGenrePage.tsx'
 import MyFavPage from './pages/MyFavPage.tsx'
 import PopularMoviesPage from './pages/PopularMoviesPage.tsx'
+import LikedMoviesProvider from './providers/LikedMoviesProvider.tsx'
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<MediaAppLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path='/movies/:categoryId' element={<MovieGenrePage />} />
-            <Route path='/popular' element={<PopularMoviesPage />} />
-            <Route path='/my-list' element={<MyFavPage />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <LikedMoviesProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<MediaAppLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path='/movies/:categoryId' element={<MovieGenrePage />} />
+              <Route path='/popular' element={<PopularMoviesPage />} />
+              <Route path='/my-list' element={<MyFavPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </LikedMoviesProvider>
     </QueryClientProvider>
   </StrictMode>
 );
