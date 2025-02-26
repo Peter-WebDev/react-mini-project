@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from "react";
 import { Movie } from "../data/api";
 
 interface LikedMoviesValue {
@@ -12,6 +12,10 @@ const LikedMoviesContext = createContext({} as LikedMoviesValue);
 export default function LikedMoviesProvider(props: PropsWithChildren) {
     const [likedMovies, setLikedMovies] = useState<Movie[]>([]);
 
+    // Adding useRef to track if this is the first time the component renders
+    // This avoids saving to lS on initial render making it an empty array.
+    const isInitialRender = useRef(true);
+
     useEffect(() => {
         const storedLikedMovies = localStorage.getItem('likedMovies');
         if (storedLikedMovies) {
@@ -20,6 +24,11 @@ export default function LikedMoviesProvider(props: PropsWithChildren) {
     }, []);
 
     useEffect(() => {
+        if (isInitialRender.current) {
+            isInitialRender.current = false; // No longer the first render
+            return; // Exit the useEffect early
+        }
+        // Save to lS only after first render
         localStorage.setItem('likedMovies', JSON.stringify(likedMovies));
     }, [likedMovies]);
 
