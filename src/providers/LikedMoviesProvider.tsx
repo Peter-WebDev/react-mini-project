@@ -31,4 +31,5 @@ export default function LikedMoviesProvider(props: PropsWithChildren) {
     );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useLikedMovies = () => useContext(LikedMoviesContext);
