@@ -50,7 +50,7 @@ const SeeMoreLink = styled.p`
 // Added from CardList
 const CardListWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
     gap: 1rem;
     margin-top: 1rem;
 
