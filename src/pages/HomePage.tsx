@@ -5,7 +5,7 @@ import CardList from "../components/CardList";
 // Styled Components
 const GenreContainer = styled(Link)<{ $categoryColor: string }>`
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.5rem;
     margin-top: 2rem;
     text-decoration: none;
@@ -25,17 +25,26 @@ const GenreTitle = styled.h2<{ $categoryColor: string }>`  // Add type for categ
   }
 `;
 
-const SeeMoreLink = styled.span`
+const SeeMoreLink = styled.p`
     cursor: pointer;
     visibility: hidden; // Initially hidden
     transition: color 0.4s ease-in-out;
     color: transparent;
+    
+    &::after {
+        content: "≫";
+        width: 0;
+        height: 0;
+        position: absolute;
+        margin-left: 0.5em;
+    }
 
     ${GenreContainer}:hover &,
     ${GenreContainer}:focus-visible & { // Show on GenreTitle hover
         visibility: visible;
-        color: #4ed5e4;
+        color: rgb(78, 213, 228);
     }
+    
 `;
 
 // Added from CardList
@@ -52,7 +61,7 @@ const CardListWrapper = styled.div`
 
 // Array with id, genre name and color
 const genres = [
-    { id: 28, name: 'Action', color: 'rgb(240, 69, 21)'},
+    { id: 28, name: 'Action', color: 'rgb(240, 150, 123)'},
     { id: 35, name: 'Comedy', color: 'rgb(255, 255, 0)'},
     { id: 18, name: 'Drama', color: 'rgb(255, 182, 193)'},
     { id: 878, name: 'Science Fiction', color: 'rgb(130, 185, 155)'},

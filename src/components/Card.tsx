@@ -15,7 +15,7 @@ const CardWrapper = styled.div`
         transform: perspective(700px)
 		scale(1.05)
 		translate(0px,-5px);
-	transform-origin: center center;
+	    transform-origin: center center;
     }
 `;
 
@@ -45,11 +45,11 @@ const CardYear = styled.p`
 const Placeholder = styled.div`
     width: 100%;
     height: auto;
-    background-color: #d6dce2;
+    background-color: rgb(214, 220, 226);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #262727;
+    color: rgb(38, 39, 39);
 `;
 
 const LikeButton = styled.button<{ $isLiked: boolean }>`
@@ -105,7 +105,7 @@ export default function Card(props: Props) {
         <CardWrapper>
             <Link to={`movies/${slug}/${props.movie.id}`}>
                 {props.movie.poster_path ? (
-                    <img src={`https://image.tmdb.org/t/p/w500${props.movie.poster_path}`} alt={props.movie.title || "Poster"} />
+                    <img src={`https://image.tmdb.org/t/p/w342${props.movie.poster_path}`} alt="" width="342" height="513" />
                 ) : (
                     <Placeholder>
                         No poster available
