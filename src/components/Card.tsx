@@ -70,8 +70,8 @@ const LikeButton = styled.button<{ $isLiked: boolean }>`
 const HeartIcon = styled.svg<{ $isLiked: boolean }>`
     width: 20px;
     height: 20px;
-    fill: ${({ $isLiked }) => $isLiked ? 'transparent' : 'red'};
-    stroke: ${({ $isLiked }) => $isLiked ? 'white' : 'red'};
+    fill: ${({ $isLiked }) => $isLiked ? 'red' : 'transparent'};
+    stroke: ${({ $isLiked }) => $isLiked ? 'red' : 'grey'};
     stroke-width: 2;
 `;
 
