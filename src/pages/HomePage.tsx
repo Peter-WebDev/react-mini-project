@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import styled from "styled-components";
 import CardList from "../components/CardList";
+import { genres } from "../data/genres";
 
 // Styled Components
 const GenreContainer = styled(Link)<{ $categoryColor: string }>`
@@ -58,15 +59,6 @@ const CardListWrapper = styled.div`
         border-top: none;
     }
 `;
-
-// Array with id, genre name and color
-const genres = [
-    { id: 28, name: 'Action', color: 'rgb(240, 150, 123)'},
-    { id: 35, name: 'Comedy', color: 'rgb(255, 255, 0)'},
-    { id: 18, name: 'Drama', color: 'rgb(255, 182, 193)'},
-    { id: 878, name: 'Science Fiction', color: 'rgb(130, 185, 155)'},
-];
-
 
 export default function HomePage() {
     return (
