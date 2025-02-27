@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import MediaAppLayout from './MediaAppLayout.tsx'
 import HomePage from './pages/HomePage.tsx'
 import MovieGenrePage from './pages/MovieGenrePage.tsx'
+import MoviePage from './pages/MoviePage.tsx'
 import MyFavPage from './pages/MyFavPage.tsx'
 import PopularMoviesPage from './pages/PopularMoviesPage.tsx'
 import LikedMoviesProvider from './providers/LikedMoviesProvider.tsx'
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path='/' element={<MediaAppLayout />}>
               <Route index element={<HomePage />} />
               <Route path='/movies/:categoryId' element={<MovieGenrePage />} />
+              <Route path='/movie/:slug/:id' element={<MoviePage />} />
               <Route path='/popular' element={<PopularMoviesPage />} />
               <Route path='/my-list' element={<MyFavPage />} />
             </Route>
