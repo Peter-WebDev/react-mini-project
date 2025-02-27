@@ -6,6 +6,7 @@ export type MovieListProps = TmdbDiscoverResponse;
 
 interface MovieDetails {
   genres: Array<{ id: number; name: string }>;
+  homepage: string | null;
   id: number;
   imdb_id: string | null;
   overview: string;
