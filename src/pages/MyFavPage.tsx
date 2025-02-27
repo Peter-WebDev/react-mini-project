@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Card from "../components/Card";
+import { Movie } from "../data/api";
 import { useLikedMovies } from "../providers/LikedMoviesProvider";
 
 // Same grid-setup as HomePage and MovieGenrePage
@@ -17,7 +18,7 @@ export default function MyFavPage() {
         <>
             <h1>My list of favourite movies</h1>
             <CardListWrapper>
-                {likedMovies.map(movie => (
+                {likedMovies.map((movie: Movie) => (
                     <Card key={movie.id} movie={movie} />
                 ))}
             </CardListWrapper>

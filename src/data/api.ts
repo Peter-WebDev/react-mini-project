@@ -4,6 +4,21 @@ const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 export type Movie = TmdbDiscoverResponse["results"][number];
 export type MovieListProps = TmdbDiscoverResponse;
 
+interface MovieDetails {
+  genres: Array<{ id: number; name: string }>;
+  homepage: string | null;
+  id: number;
+  imdb_id: string | null;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  release_date: string;
+  tagline: string | null;
+  title: string;
+  vote_average: number;
+  vote_count: number;
+}
+
 interface TmdbDiscoverResponse {
   page: number;
   results: [
@@ -26,6 +41,24 @@ interface TmdbDiscoverResponse {
   ];
   total_pages: number;
   total_results: number;
+}
+
+export async function fetchMovieDetails(id: string): Promise<MovieDetails> {
+  const response = await fetch(
+    `${TMDB_BASE_URL}/movie/${id}?api_key=${TMDB_API_KEY}`,
+    {
+      headers: {
+        Authorization: TMDB_API_KEY,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Error status: ${response.status}`);
+  }
+
+  const data: MovieDetails = await response.json();
+  return data;
 }
 
 export async function fetchMoviesByGenre(

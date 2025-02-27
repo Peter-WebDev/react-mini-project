@@ -1,6 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
 import styled from "styled-components";
-import CardList from "../components/CardList";
+import Card from "../components/Card";
+import { fetchMoviesByGenre, Movie } from "../data/api";
 import { genres } from "../data/genres";
 
 // Styled Components
@@ -71,10 +73,34 @@ export default function HomePage() {
                         <SeeMoreLink>Explore All {genre.name} Movies</SeeMoreLink>
                     </GenreContainer>
                     <CardListWrapper>
-                        <CardList genreId={genre.id} initialNumberOfMovies={10} />
+                        <GenreMovieList genreId={genre.id} initialNumberOfMovies={10} />
                     </CardListWrapper>
                 </div>
             ))}
         </>
     );
 }
+
+interface GenreMovieListProps {
+    genreId: number;
+    initialNumberOfMovies: number;
+  }
+  
+  function GenreMovieList({ genreId, initialNumberOfMovies }: GenreMovieListProps) {
+    const { isLoading, error, data } = useQuery({
+      queryKey: ["movies", genreId, initialNumberOfMovies],
+      queryFn: () => fetchMoviesByGenre(genreId, initialNumberOfMovies),
+    });
+  
+    if (isLoading) return <p>Loading movies....</p>;
+    if (error) return <p>Error: {error.message}</p>;
+    if (!data || data.length === 0) return <p>No movies found</p>;
+  
+    return (
+      <>
+        {data.map((movie: Movie) => (
+          <Card key={movie.id} movie={movie} />
+        ))}
+      </>
+    );
+  }

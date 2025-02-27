@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import styled from "styled-components";
-import CardList from "../components/CardList";
-import { fetchMoviesByGenrePaginated } from "../data/api";
+import Card from "../components/Card";
+import { fetchMoviesByGenrePaginated, Movie } from "../data/api";
 import { getGenreNameById } from "../data/genres";
 
 const CardListWrapper = styled.section`
@@ -75,7 +75,7 @@ export default function MovieGenrePage() {
     return <p>Error: Could not load movies.</p>
   }
 
-  const allMovies = data?.pages.flatMap(page => page.movies) || [];
+  const allMovies = data?.pages.flatMap((page) => page.movies) || [];
 
   if (allMovies.length === 0) { // Added check for empty array
     return <p>No movies found for this category.</p>
@@ -89,7 +89,9 @@ export default function MovieGenrePage() {
       <h1>Movies in genre {genreName}</h1>
       <p>Popcorn and Movies, Perfected.</p>
       <CardListWrapper>
-        <CardList movies={allMovies} />
+        {allMovies.map((movie: Movie) => (
+          <Card key={movie.id} movie={movie} />
+        ))}
       </CardListWrapper>
       {hasNextPage && (
         <LoadMoreButton
