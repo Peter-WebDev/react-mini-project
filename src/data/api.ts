@@ -55,7 +55,7 @@ export async function fetchMoviesByGenrePaginated(
   pageParam = 1
 ): Promise<{ movies: Movie[]; nextPage: number | null }> {
   const response = await fetch(
-    `$${TMDB_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&page=${pageParam}`,
+    `${TMDB_BASE_URL}/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&sort_by=popularity.desc&page=${pageParam}`,
     {
       headers: {
         Authorization: TMDB_API_KEY,
