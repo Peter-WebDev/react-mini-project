@@ -4,6 +4,43 @@ const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 export type Movie = TmdbDiscoverResponse["results"][number];
 export type MovieListProps = TmdbDiscoverResponse;
 
+interface MovieDetails {
+  adult: boolean;
+  backdrop_path: string | null;
+  belongs_to_collection: null | object;
+  budget: number;
+  genres: Array<{ id: number; name: string }>;
+  homepage: string | null;
+  id: number;
+  imdb_id: string | null;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  production_companies: Array<{
+    id: number;
+    logo_path: string | null;
+    name: string;
+    origin_country: string;
+  }>;
+  production_countries: Array<{ iso_3166_1: string; name: string }>;
+  release_date: string;
+  revenue: number;
+  runtime: number;
+  spoken_languages: Array<{
+    english_name: string;
+    iso_639_1: string;
+    name: string;
+  }>;
+  status: string;
+  tagline: string | null;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+}
+
 interface TmdbDiscoverResponse {
   page: number;
   results: [
@@ -26,6 +63,24 @@ interface TmdbDiscoverResponse {
   ];
   total_pages: number;
   total_results: number;
+}
+
+export async function fetchMovieDetail(id: string): Promise<MovieDetails> {
+  const response = await fetch(
+    `${TMDB_BASE_URL}/movie/${id}?api_key=${TMDB_API_KEY}`,
+    {
+      headers: {
+        Authorization: TMDB_API_KEY,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Error status: ${response.status}`);
+  }
+
+  const data: MovieDetails = await response.json();
+  return data;
 }
 
 export async function fetchMoviesByGenre(
