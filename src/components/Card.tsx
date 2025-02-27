@@ -2,6 +2,11 @@ import { Link } from "react-router";
 import styled from "styled-components";
 import { Movie } from "../data/api";
 import { useLikedMovies } from "../providers/LikedMoviesProvider";
+import { generateMovieLink } from "../utils/linkUtils";
+
+interface Props {
+    movie: Movie;
+}
 
 const CardWrapper = styled.div`
     border-radius: 8px;
@@ -75,23 +80,19 @@ const HeartIcon = styled.svg<{ $isLiked: boolean }>`
     stroke-width: 2;
 `;
 
-interface Props {
-    movie: Movie;
-}
-
-// Function to generate a slug from the title to lowercase and replace/remove
-const generateSlug = (title: string): string => {
-    return title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-") // Replace non-alphanumeric characters with hyphens
-        .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
-}
+// // Function to generate a slug from the title to lowercase and replace/remove
+// const generateSlug = (title: string): string => {
+//     return title
+//         .toLowerCase()
+//         .replace(/[^a-z0-9]+/g, "-") // Replace non-alphanumeric characters with hyphens
+//         .replace(/^-+|-+$/g, ""); // Remove leading/trailing hyphens
+// }
 
 export default function Card(props: Props) {
     const { toggleLikedMovie, isMovieLiked } = useLikedMovies();
     const isLiked = isMovieLiked(props.movie.id);
 
-    const slug = generateSlug(props.movie.title); // Calling the slug function
+    // const slug = generateSlug(props.movie.title); // Calling the slug function
 
     // Handle like button click without triggering the Link
     const handleLikeClick = (e: React.MouseEvent) => {
@@ -103,7 +104,7 @@ export default function Card(props: Props) {
     // Conditinal rendering instead to check if there is a poster or not
     return (
         <CardWrapper>
-            <Link to={`movies/${slug}/${props.movie.id}`}>
+            <Link to={generateMovieLink(props.movie)}>
                 {props.movie.poster_path ? (
                     <img src={`https://image.tmdb.org/t/p/w342${props.movie.poster_path}`} alt="" width="342" height="513" />
                 ) : (
