@@ -1,4 +1,6 @@
-# Popcorn+ a React Mini Project
+# Popcorn+ a React Mini Movie Project
+
+Try it out now on Vercel [Popcorn+](https://popcorn-plus-a-react-mini-movie-project.vercel.app/)
 
 Jump straight to [Usage](#usage)
 
