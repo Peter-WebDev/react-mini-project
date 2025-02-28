@@ -7,7 +7,6 @@ import HomePage from './pages/HomePage.tsx'
 import MovieGenrePage from './pages/MovieGenrePage.tsx'
 import MoviePage from './pages/MoviePage.tsx'
 import MyFavPage from './pages/MyFavPage.tsx'
-import PopularMoviesPage from './pages/PopularMoviesPage.tsx'
 import LikedMoviesProvider from './providers/LikedMoviesProvider.tsx'
 
 const queryClient = new QueryClient();
@@ -22,7 +21,6 @@ createRoot(document.getElementById('root')!).render(
               <Route index element={<HomePage />} />
               <Route path='/movies/:categoryId' element={<MovieGenrePage />} />
               <Route path='/movie/:slug/:id' element={<MoviePage />} />
-              <Route path='/popular' element={<PopularMoviesPage />} />
               <Route path='/my-list' element={<MyFavPage />} />
             </Route>
           </Routes>

@@ -70,7 +70,7 @@ const MoviePoster = styled.img`
     border-radius: 0.5rem;
 `;
 
-const Url = styled.a`
+export const Url = styled.a`
     text-decoration: none;
     color: rgb(78, 213, 228);
 
@@ -125,6 +125,7 @@ export default function MoviePage() {
                         ) : (
                             <i>No tagline available</i>
                         )}
+                        <p>Popcorn+ and movies, as it should be.</p>
                         <Overview>{movie?.overview}</Overview>
                         <ReleaseDate>Release Date: {new Date(releaseDate).toLocaleDateString()}</ReleaseDate>
                         <Ratings>

@@ -17,6 +17,7 @@ export default function MyFavPage() {
     return (
         <>
             <h1>My list of favourite movies</h1>
+            <p>Cinema experience at home, with perfect Popcorn+.</p>
             <CardListWrapper>
                 {likedMovies.map((movie: Movie) => (
                     <Card key={movie.id} movie={movie} />

@@ -87,7 +87,7 @@ export default function MovieGenrePage() {
   return (
     <>
       <h1>Movies in genre {genreName}</h1>
-      <p>Popcorn and Movies, Perfected.</p>
+      <p>Popcorn+ and Movies, Perfected.</p>
       <CardListWrapper>
         {allMovies.map((movie: Movie) => (
           <Card key={movie.id} movie={movie} />

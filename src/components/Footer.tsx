@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import logotmdb from '../assets/blue_square_2.svg';
 import logo from '../assets/popcorn-plus.webp';
+import { Url } from "../pages/MoviePage";
 
 const StyledFooter = styled.footer`
     background-color: rgb(44, 44, 44);
@@ -51,6 +52,7 @@ export default function Footer() {
                 <LogoTMDB src={logotmdb} alt="" />
                 <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
             </StyledFooterTMDBContainer>
+                <p>Made with ❤️ by Peter Warholm. 2025-02-28. | <Url href="https://github.com/Peter-WebDev/">GitHub</Url></p>
         </StyledFooterWrapper>
       </StyledFooter>
     );

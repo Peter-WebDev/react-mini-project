@@ -66,6 +66,7 @@ export default function HomePage() {
     return (
         <>
             <h1>Welcome to Popcorn+</h1>
+            <p>Movies and Popcorn+, the perfect experience.</p>
             {genres.map(genre => (
                 <div key={genre.id}>
                     <GenreContainer to={`/movies/${genre.id}`} $categoryColor={genre.color}>  {/* Link wraps title and "See More" */}

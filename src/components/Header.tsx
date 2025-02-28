@@ -66,7 +66,6 @@ export default function Header() {
           <nav>
             <StyledUl>
               <li><StyledLink to='/'>Home</StyledLink></li>
-              <li><StyledLink to='/popular'>Popular</StyledLink></li>
               <li><StyledLink to='/my-list'>My list</StyledLink></li>
             </StyledUl>
           </nav>
